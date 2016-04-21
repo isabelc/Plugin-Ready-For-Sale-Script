@@ -10,6 +10,7 @@ Prepares a local plugin for sale by compressing the plugin into a `.zip` file, m
 **Prerequisite:** Existing git repo consising of only the readme.txt file, with its remote origin set up on GitHub. Both local and remote repo names must match the plugin slug, exactly.
 
 1) Edit `ready.sh` and fill in the necessary config values at the top of the file.
+
 2) Place `ready.sh` in the local plugin directory
 3) Run `ready.sh` after updating the version in the main plugin file, and the changelog in the readme.txt file.
 
