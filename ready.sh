@@ -3,13 +3,12 @@
 # moving it out to another folder on your local system,
 # and pushing only the readme.txt file to GitHub so that it can be read by the EDD Software Licensing readme parser.
 # Prerequisite: Main plugin file slug must be the same as the plugin folder name.
-# Prerequisite: Existing git repo consising of only the readme.txt file, with its remote origin set up on GitHub. Both repo names must match the plugin slug, exactly.
-# Configure the first 2 variables.
+# Prerequisite: Existing git repo consising of only the readme.txt file (use .gitignore to hide the rest), with its remote origin set up on GitHub. GitHub repo name must match the plugin slug, exactly.
+# Configure the 1st variable.
 
 set -e
 
 #config
-GITPATH="${HOME}/github/" # folder holding your local git repo
 READYFORSALE="${HOME}/readyforsale/" # destination folder for .zip file 
 
 SLUG=${PWD##*/}
@@ -26,24 +25,15 @@ echo "Zipping $SLUG version: $NEWVERSION"
 cd ../
 
 # zip the plugin
-
-zip -r ${SLUG}.${NEWVERSION}.zip $SLUG -x '*.git*' '*.sh' '*~*'
+zip -r ${SLUG}.${NEWVERSION}.zip $SLUG -x '*tests*' '*.git*' '*.xml' '*.sh' '*~*'
 
 echo "Moving the zipped plugin out to $READYFORSALE"
 
 mv ${SLUG}.${NEWVERSION}.zip $READYFORSALE
 
-#echo "Exit early while testing, no committing or pushing"
-#exit 1
+echo "Pushing readme to GitHub..."
 
-cd ${GITPATH}$SLUG
-
-echo "Copying from ${CURRENTDIR}/readme.txt to `pwd`.txt"
-
-cp -f ${CURRENTDIR}/readme.txt readme.txt
-
-echo "Pushing to readme to GitHub..."
-
+cd $SLUG
 git add readme.txt
 git commit -m "Updated changelog"
 git push origin master
