@@ -7,12 +7,12 @@ Prepares a local plugin for sale by compressing the plugin into a `.zip` file, m
 
 **Prerequisite:** The Version in the plugin header must start at the beginning of the line wihout a preceding *. So, the main plugin header must be [WordPress style](https://codex.wordpress.org/File_Header#Plugin_File_Header_Example), not PHPDoc DocBlock style.
 
-**Prerequisite:** Existing git repo consising of only the readme.txt file, with its remote origin set up on GitHub. Both local and remote repo names must match the plugin slug, exactly.
+**Prerequisite:** Existing git repo consising of only the readme.txt file (use .gitignore to hide the rest), with its remote origin set up on GitHub. GitHub repo name must match the plugin slug, exactly.
 
-1) Edit `ready.sh` and fill in the necessary config values at the top of the file.
+1) Edit `ready.sh` to configure the first value at the top of the file.
 
 2) Place `ready.sh` in the local plugin directory.
 
-3) Run `ready.sh` after updating the version in the main plugin file, and the changelog in the readme.txt file.
+3) Run `./ready.sh` after updating the version in the main plugin file, and the changelog in the readme.txt file.
 
 WARNING: this script pushes to GitHub.
